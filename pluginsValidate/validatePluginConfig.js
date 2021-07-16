@@ -5,15 +5,15 @@ var asset_type = {
         {
           name: 'isArtboardCorrect',
           params: {
-            size: ['24', '24'],
+            size: [24, 24],
           },
         },
-        // {
-        //   name: 'isWorkingAreaCorrect',
-        //   params: {
-        //     size: ['22', '22'],
-        //   },
-        // },
+        {
+          name: 'isWorkingAreaCorrect',
+          params: {
+            size: [22, 22],
+          },
+        },
         // // only single path is allowed
         // {
         //   name: 'areThereNthPaths',
