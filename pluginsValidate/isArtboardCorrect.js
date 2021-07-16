@@ -1,6 +1,6 @@
 'use strict';
 
-exports.type = 'full';
+exports.type = 'validate';
 
 exports.active = true;
 
@@ -26,7 +26,7 @@ var ENOCLS = `Error in plugin "isArtboardCorrect": absent parameters.
 
   plugins:
   - isArtboardCorrect:
-      size: ["24", "24"]
+      size: [24, 24]
   `;
 
 exports.fn = function (root, validateResult, params) {
@@ -57,7 +57,7 @@ function nonZero(array) {
 
   array.forEach(function (item) {
     if (item !== '0') {
-      result.push(item);
+      result.push(parseInt(item, 10));
     }
   });
 

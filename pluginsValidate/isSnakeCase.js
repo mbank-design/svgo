@@ -1,6 +1,6 @@
 'use strict';
 
-exports.type = 'full';
+exports.type = 'validate';
 
 exports.active = false;
 
