@@ -32,14 +32,18 @@ var asset_type = {
         {
           name: 'isSnakeCase',
         },
+        {
+          name: 'isSVG',
+        },
       ],
     },
     resultTemplate: {
       isArtboardCorrect: false,
       isWorkingAreaCorrect: false,
+      isSnakeCase: false,
+      isSVG: false,
       areThereNthPaths: false,
       areFillsAllowed: false,
-      isSnakeCase: false,
     },
   },
   iconColor: {},
