@@ -14,36 +14,33 @@ var asset_type = {
             size: [22, 22],
           },
         },
-        // // only single path is allowed
-        // {
-        //   name: 'areThereNthPaths',
-        //   params: {
-        //     amount: 1,
-        //   },
-        // },
-        // no fills are allowed
-        // {
-        //   name: 'areFillsAllowed',
-        //   params: {
-        //     state: false,
-        //   },
-        // },
-        // follow snake case
+        {
+          name: 'numberOfAllowedPaths',
+          params: {
+            amount: 1,
+          },
+        },
+        {
+          name: 'areFillsNone',
+        },
         {
           name: 'isSnakeCase',
         },
         {
           name: 'isSVG',
         },
+        {
+          name: 'areNoDiacriticCharacters',
+        },
       ],
     },
     resultTemplate: {
+      areFillsNone: false,
       isArtboardCorrect: false,
       isWorkingAreaCorrect: false,
       isSnakeCase: false,
       isSVG: false,
-      areThereNthPaths: false,
-      areFillsAllowed: false,
+      numberOfAllowedPaths: false,
     },
   },
   iconColor: {},
