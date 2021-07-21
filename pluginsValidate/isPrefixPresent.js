@@ -24,7 +24,13 @@ exports.fn = function (root, validateResult) {
     var result = false;
     var filename = root.filename;
 
-    var prefixes = ['retail_', 'corporate_'];
+    var prefixes = [
+      'retail_',
+      'corporate_',
+      'sme_',
+      'privatebanking_',
+      'mobile_',
+    ];
 
     for (var i = 0; i < prefixes.length; i++) {
       if (filename.indexOf(prefixes[i]) === 0) {
