@@ -14,7 +14,7 @@ exports.description = 'checks if the file is snake_case named';
  * @param {Object} root current iteration root
  * @param {Object} validateResult current validation result
  *
- * @return {Objects} root holding the SVG data, and validateResult holding the validation result
+ * @return {Object} validateResult holding the validation result
  *
  * @author Tymon Żarski
  */
@@ -33,5 +33,5 @@ exports.fn = function (root, validateResult) {
     validateResult.areNoDiacriticCharacters = result;
   }
 
-  return [root, validateResult];
+  return validateResult;
 };

@@ -26,7 +26,7 @@ strict: true
  * @param {Object} root current iteration root
  * @param {Object} validateResult current validation result
  *
- * @return {Objects} checks for many paths are allowed inside of svg
+ * @return {Object} validateResult holding the validation result
  *
  * @author Tymon Żarski
  */
@@ -48,5 +48,5 @@ exports.fn = function (root, validateResult, params) {
     console.error(ENOCLS);
   }
 
-  return [root, validateResult];
+  return validateResult;
 };

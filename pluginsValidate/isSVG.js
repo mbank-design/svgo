@@ -16,7 +16,7 @@ const utils = require('./validationUtilities.js');
  * @param {Object} root current iteration root
  * @param {Object} validateResult current validation result
  *
- * @return {Objects} root holding the SVG data, and validateResult holding the validation result
+ * @return {Object} validateResult holding the validation result
  *
  * @author Tymon Żarski
  */
@@ -25,7 +25,7 @@ exports.fn = function (root, validateResult) {
   if (root.filename) {
     var result = false;
 
-    // get extention form file name (if any)
+    // get extension form file name (if any)
     const ext = root.filename.split('.').pop();
 
     var svgTag = utils.findElementByName(root, 'svg');
@@ -37,5 +37,5 @@ exports.fn = function (root, validateResult) {
     validateResult.isSVG = result;
   }
 
-  return [root, validateResult];
+  return validateResult;
 };
