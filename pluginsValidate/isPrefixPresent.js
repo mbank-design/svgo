@@ -14,7 +14,7 @@ exports.description = 'checks if the filename has prefix';
  * @param {Object} root current iteration root
  * @param {Object} validateResult current validation result
  *
- * @return {Objects} root holding the SVG data, and validateResult holding the validation result
+ * @return {Object} root holding the SVG data and validateResult holding the validation result
  *
  * @author Tymon Żarski
  */

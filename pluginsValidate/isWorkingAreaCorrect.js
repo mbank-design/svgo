@@ -33,7 +33,7 @@ var ENOCLS = `Error in plugin "isWorkingAreaCorrect": absent parameters.
   `;
 
 exports.fn = function (root, validateResult, params) {
-  if (params && utils.findElementByName(root, 'path')) {
+  if ((params || params === {}) && utils.findElementByName(root, 'path')) {
     var result = false;
     const path = utils.findElementByName(root, 'path');
     const Artboard = utils
@@ -61,9 +61,8 @@ exports.fn = function (root, validateResult, params) {
     } else {
       result = false;
     }
-
     validateResult.isWorkingAreaCorrect = result;
-  } else if (!params) {
+  } else if (params === {} || !params) {
     console.error(ENOCLS);
   }
 
