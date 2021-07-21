@@ -4,7 +4,11 @@ const { expect } = require('chai');
 const fs = require('fs');
 const path = require('path');
 const { EOL } = require('os');
-const { optimize, extendDefaultPlugins } = require('../../lib/svgo.js');
+const {
+  optimize,
+  validate,
+  extendDefaultPlugins,
+} = require('../../lib/svgo.js');
 
 const regEOL = new RegExp(EOL, 'g');
 
@@ -88,5 +92,26 @@ describe('svgo', () => {
       js2svg: { pretty: true },
     });
     expect(normalize(result.data)).to.equal(expected);
+  });
+
+  it('should validate() return an object', async () => {
+    const result = validate(
+      fs.readFileSync(path.resolve(__dirname, 'test.svg'), 'utf-8'),
+      'test.svg',
+      'iconRegular',
+      {}
+    );
+    expect(result).to.be.an('object');
+  });
+
+  it('should validate() do not crash and inform on invalid file type', async () => {
+    const result = validate(
+      fs.readFileSync(path.resolve(__dirname, 'test.pdf'), 'utf-8'),
+      'test.pdf',
+      'iconRegular',
+      {}
+    );
+    expect(result).to.be.an('object');
+    expect(result.isSVG).to.be.false;
   });
 });

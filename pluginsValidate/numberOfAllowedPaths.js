@@ -31,7 +31,7 @@ strict: true
  * @author Tymon Żarski
  */
 exports.fn = function (root, validateResult, params) {
-  if (params) {
+  if (params.amount != null) {
     let strict = params.strict || false;
     let result = false;
 
@@ -44,7 +44,7 @@ exports.fn = function (root, validateResult, params) {
     }
 
     validateResult.numberOfAllowedPaths = result;
-  } else if (!params) {
+  } else {
     console.error(ENOCLS);
   }
 

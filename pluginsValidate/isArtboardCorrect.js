@@ -31,7 +31,7 @@ var ENOCLS = `Error in plugin "isArtboardCorrect": absent parameters.
 
 exports.fn = function (root, validateResult, params) {
   if (
-    params &&
+    (params || params === {}) &&
     root.children[0].attributes.viewBox &&
     root.children[0].attributes.viewBox != null
   ) {
@@ -44,7 +44,7 @@ exports.fn = function (root, validateResult, params) {
       result = false;
     }
     validateResult.isArtboardCorrect = result;
-  } else if (!params) {
+  } else if (params === {} || !params) {
     console.error(ENOCLS);
   }
 
