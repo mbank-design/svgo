@@ -1,39 +1,37 @@
 var asset_type = {
   iconRegular: {
-    config: {
-      plugins: [
-        {
-          name: 'isArtboardCorrect',
-          params: {
-            size: [24, 24],
-          },
+    plugins: [
+      {
+        name: 'isArtboardCorrect',
+        params: {
+          size: [24, 24],
         },
-        {
-          name: 'isWorkingAreaCorrect',
-          params: {
-            size: [22, 22],
-          },
+      },
+      {
+        name: 'isWorkingAreaCorrect',
+        params: {
+          size: [22, 22],
         },
-        {
-          name: 'numberOfAllowedPaths',
-          params: {
-            amount: 1,
-          },
+      },
+      {
+        name: 'numberOfAllowedPaths',
+        params: {
+          amount: 1,
         },
-        {
-          name: 'areFillsNone',
-        },
-        {
-          name: 'isSnakeCase',
-        },
-        {
-          name: 'isSVG',
-        },
-        {
-          name: 'areNoDiacriticCharacters',
-        },
-      ],
-    },
+      },
+      {
+        name: 'areFillsNone',
+      },
+      {
+        name: 'isSnakeCase',
+      },
+      {
+        name: 'isSVG',
+      },
+      {
+        name: 'areNoDiacriticCharacters',
+      },
+    ],
     resultTemplate: {
       areFillsNone: false,
       isArtboardCorrect: false,
