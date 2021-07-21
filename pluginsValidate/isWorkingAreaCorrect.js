@@ -18,7 +18,7 @@ const utils = require('./validationUtilities');
  * @param {Object} validateResult current validation result
  * @param {Object} params current iteration params
  *
- * @return {Objects} root holding the SVG data, and validateResult holding the validation result
+ * @return {Object} validateResult holding the validation result
  *
  * @author Tymon Żarski
  */
@@ -66,7 +66,7 @@ exports.fn = function (root, validateResult, params) {
     console.error(ENOCLS);
   }
 
-  return [root, validateResult];
+  return validateResult;
 };
 
 //check if working area and bounding box arrays contain the same values

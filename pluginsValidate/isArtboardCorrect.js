@@ -15,7 +15,7 @@ exports.description = 'checks if viewBox has correct size';
  * @param {Object} validateResult current validation result
  * @param {Object} params current iteration params
  *
- * @return {Objects} root holding the SVG data, and validateResult holding the validation result
+ * @return {Object} validateResult holding the validation result
  *
  * @author Tymon Żarski
  */
@@ -48,7 +48,7 @@ exports.fn = function (root, validateResult, params) {
     console.error(ENOCLS);
   }
 
-  return [root, validateResult];
+  return validateResult;
 };
 
 // remove all 0 form array and return it
@@ -64,7 +64,7 @@ function nonZero(array) {
   return result;
 }
 
-//comapre if equivalent cells in two arrays are equal
+//compare if equivalent cells in two arrays are equal
 function compareArrayCells(array1, array2) {
   if (array1.length !== array2.length) {
     return false;

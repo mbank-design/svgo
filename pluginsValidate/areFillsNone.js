@@ -15,7 +15,7 @@ const utils = require('./validationUtilities.js');
  * @param {Object} root current iteration root
  * @param {Object} validateResult current validation result
  *
- * @return {Objects} checks if svg contains any fills
+ * @return {Object} validateResult holding the validation result
  *
  * @author Tymon Żarski
  */
@@ -28,7 +28,7 @@ exports.fn = function (root, validateResult) {
 
   validateResult.areFillsNone = result;
 
-  return [root, validateResult];
+  return validateResult;
 };
 
 // check if all fill in found elements of object have a value 'none' if yes, return true
