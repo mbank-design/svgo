@@ -1,5 +1,5 @@
 var asset_type = {
-  iconRegular: {
+  ICON_REGULAR: {
     plugins: [
       {
         name: 'isArtboardCorrect',
@@ -32,16 +32,27 @@ var asset_type = {
         name: 'areNoDiacriticCharacters',
       },
     ],
-    resultTemplate: {
-      areFillsNone: false,
-      isArtboardCorrect: false,
-      isWorkingAreaCorrect: false,
-      isSnakeCase: false,
-      isSVG: false,
-      numberOfAllowedPaths: false,
-    },
   },
-  iconColor: {},
+  ICON_COLOR: {},
+  ILLUSTRATION: {
+    plugins: [
+      {
+        name: 'isArtboardCorrect',
+        params: {
+          size: [256, 256],
+        },
+      },
+      {
+        name: 'isSnakeCase',
+      },
+      {
+        name: 'isPrefixPresent',
+      },
+      {
+        name: 'areNoDiacriticCharacters',
+      },
+    ],
+  },
 };
 
 exports.validationAssetType = asset_type;
