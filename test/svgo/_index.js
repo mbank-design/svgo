@@ -94,21 +94,18 @@ describe('svgo', () => {
     expect(normalize(result.data)).to.equal(expected);
   });
 
-  it('should validate() return an object', async () => {
-    const result = validate(
-      fs.readFileSync(path.resolve(__dirname, 'test.svg'), 'utf-8'),
-      'test.svg',
-      'iconRegular',
-      {}
-    );
+  it('should validate svg and return an object with property {isSVG: true}', async () => {
+    const SVG = `<svg xmlns="http://www.w3.org/2000/svg"><g attr1="val1"><g attr2="val2"><path attr2="val3" d="..."/></g><path d="..."/></g></svg>`;
+    const result = validate(SVG, 'test.svg', 'ICON_REGULAR', {});
     expect(result).to.be.an('object');
+    expect(result.isSVG).to.be.true;
   });
 
-  it('should validate() do not crash and inform on invalid file type', async () => {
+  it('should try to validate pdf and return an object with property {isSVG: false}', async () => {
     const result = validate(
       fs.readFileSync(path.resolve(__dirname, 'test.pdf'), 'utf-8'),
       'test.pdf',
-      'iconRegular',
+      'ICON_REGULAR',
       {}
     );
     expect(result).to.be.an('object');
