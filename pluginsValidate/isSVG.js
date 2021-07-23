@@ -31,6 +31,9 @@ exports.fn = function (root, validateResult) {
     const result = svgTag.name === 'svg' && ext === 'svg';
 
     validateResult.isSVG = result;
+  } else {
+    validateResult.isSVG = false;
+    console.error('no filename provided!');
   }
 
   return validateResult;

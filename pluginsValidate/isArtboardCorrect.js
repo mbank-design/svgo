@@ -26,7 +26,7 @@ var ENOCLS = `Error in plugin "isArtboardCorrect": absent parameters.
 
   plugins:
   - isArtboardCorrect:
-      size: [24, 24]
+      size: [width, height] // set width or height to 'null' of it does not have to be bounded, but both values cannot be null
   `;
 
 exports.fn = function (root, validateResult, params) {
@@ -35,36 +35,43 @@ exports.fn = function (root, validateResult, params) {
     root.children[0].attributes.viewBox &&
     root.children[0].attributes.viewBox != null
   ) {
-    let viewBox = root.children[0].attributes.viewBox
+    const [paramViewBoxWidth, paramViewBoxHeight] = params.size;
+
+    if (paramViewBoxHeight === null && paramViewBoxWidth === null) {
+      console.log(ENOCLS);
+    }
+
+    const [
+      svgViewBoxWidth,
+      svgViewBoxHeight,
+    ] = root.children[0].attributes.viewBox
       .split(' ')
-      .map(function (value) {
-        if (value !== 0) {
+      .map(function (value, index) {
+        if (index > 1 && value !== 0) {
           return parseInt(value, 10);
         }
       })
       .filter(function (value) {
-        return value !== 0;
+        return value !== undefined;
       });
 
-    validateResult.isArtboardCorrect = compareArrayCells(viewBox, params.size);
+    let result;
+
+    if (paramViewBoxWidth === null || paramViewBoxHeight === null) {
+      result =
+        svgViewBoxWidth === paramViewBoxWidth ||
+        svgViewBoxHeight === paramViewBoxHeight;
+    } else {
+      result =
+        svgViewBoxWidth === paramViewBoxWidth &&
+        svgViewBoxHeight === paramViewBoxHeight;
+    }
+
+    validateResult.isArtboardCorrect = result;
   } else if (params === {} || !params) {
+    validateResult.isArtboardCorrect = false;
     console.error(ENOCLS);
   }
 
   return validateResult;
 };
-
-//compare if equivalent cells in two arrays are equal
-function compareArrayCells(array1, array2) {
-  if (array1.length !== array2.length) {
-    return false;
-  }
-
-  for (let i = 0; i < array1.length; i++) {
-    if (array1[i] !== array2[i]) {
-      return false;
-    }
-  }
-
-  return true;
-}

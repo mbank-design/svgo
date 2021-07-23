@@ -38,6 +38,7 @@ exports.fn = function (root, validateResult, params) {
     validateResult.numberOfAllowedPaths = result;
   } else {
     console.error(ENOCLS);
+    validateResult.numberOfAllowedPaths = false;
   }
 
   return validateResult;

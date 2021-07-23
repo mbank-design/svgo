@@ -29,7 +29,10 @@ exports.fn = function (root, validateResult) {
       result = false;
     }
 
-    validateResult.areNoDiacriticCharacters = result;
+    validateResult.hasNoDiacriticCharacters = result;
+  } else {
+    validateResult.hasNoDiacriticCharacters = false;
+    console.log('no filename provided!');
   }
 
   return validateResult;

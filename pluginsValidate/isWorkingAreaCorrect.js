@@ -29,47 +29,56 @@ var ENOCLS = `Error in plugin "isWorkingAreaCorrect": absent parameters.
 
   plugins:
   - isWorkingAreaCorrect:
-      size: [22, 22]
+      size: [width, height]
   `;
 
 exports.fn = function (root, validateResult, params) {
-  if ((params || params === {}) && utils.findElementByName(root, 'path')) {
-    var result = false;
-    const path = utils.findElementByName(root, 'path');
-    const Artboard = utils
-      .findElementByName(root, 'svg')
-      .attributes.viewBox.split(' ');
-    const size = params.size;
-    const boundingSize = [parseInt(size[0], 10), parseInt(size[1], 10)];
-    const ArtboardSize = [parseInt(Artboard[2], 10), parseInt(Artboard[3], 10)];
-    const workingArea = svgPathBbox(path.attributes.d);
-    const workingAreaSize = [
-      workingArea[2] - workingArea[0],
-      workingArea[3] - workingArea[1],
+  if (
+    (params || params === {}) &&
+    utils.findElementByName(root, 'path') &&
+    root.children[0].attributes.viewBox &&
+    root.children[0].attributes.viewBox != null
+  ) {
+    const pathElement = utils.findElementByName(root, 'path');
+    const [paramPathWidth, paramPathHeight] = params.size;
+    const [
+      svgViewBoxWidth,
+      svgViewBoxHeight,
+    ] = root.children[0].attributes.viewBox
+      .split(' ')
+      .map(function (value, index) {
+        if (index > 1 && value !== 0) {
+          return parseInt(value, 10);
+        }
+      })
+      .filter(function (value) {
+        return value !== undefined;
+      });
+    const [
+      workingAreaX1,
+      workingAreaY1,
+      workingAreaX2,
+      workingAreaY2,
+    ] = svgPathBbox(pathElement.attributes.d);
+    const [workingAreaWidth, workingAreaHeight] = [
+      workingAreaX2 - workingAreaX1,
+      workingAreaY2 - workingAreaY1,
     ];
-    const ArtboardCordiantes = [
-      (ArtboardSize[0] - boundingSize[0]) / 2,
-      (ArtboardSize[1] - boundingSize[1]) / 2,
+    const [artboardX1, artboardY1] = [
+      (svgViewBoxWidth - paramPathWidth) / 2,
+      (svgViewBoxHeight - paramPathHeight) / 2,
     ];
+    const result =
+      workingAreaWidth <= paramPathWidth &&
+      workingAreaHeight <= paramPathHeight &&
+      artboardX1 <= workingAreaX1 &&
+      artboardY1 <= workingAreaY1;
 
-    if (
-      checkWorkingArea(workingAreaSize, boundingSize) &&
-      ArtboardCordiantes[0] <= workingArea[0] &&
-      ArtboardCordiantes[1] <= workingArea[1]
-    ) {
-      result = true;
-    } else {
-      result = false;
-    }
     validateResult.isWorkingAreaCorrect = result;
   } else if (params === {} || !params) {
     console.error(ENOCLS);
+    validateResult.isWorkingAreaCorrect = false;
   }
 
   return validateResult;
 };
-
-//check if working area and bounding box arrays contain the same values
-function checkWorkingArea(workingArea, boundingBox) {
-  return workingArea[0] === boundingBox[0] && workingArea[1] === boundingBox[1];
-}

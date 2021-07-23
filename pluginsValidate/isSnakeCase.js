@@ -27,6 +27,9 @@ exports.fn = function (root, validateResult) {
     const result = regex.test(filename);
 
     validateResult.isSnakeCase = result;
+  } else {
+    validateResult.isSnakeCase = false;
+    console.log('no filename provided!');
   }
 
   return validateResult;
