@@ -25,15 +25,21 @@ describe('pluginsValidate tests', function () {
           const items = normalize(data).split(/\s*===\s*/);
           const test = items.length === 2 ? items[1] : items[0];
           // extract test case
-          var [original, should, params] = test.split(/\s*@@@\s*/);
+          let [original, should, params] = test.split(/\s*@@@\s*/);
+          // change string to boolean
           should = should === 'true';
 
           if (name === 'is_snake_case') {
             name = 'isSnakeCase';
           } else if (name === 'sme_isPrefixPresent') {
             name = 'isPrefixPresent';
-          } else if (name === 'areNoDiącritićCharacters') {
-            name = 'areNoDiacriticCharacters';
+          } else if (name === 'hasNoDiącritićCharacters') {
+            name = 'hasNoDiacriticCharacters';
+          } else if (name === 'pl' || name === 'polska') {
+            if (name === 'pl') {
+              file = 'pl.svg';
+            }
+            name = 'isISO3166_1Alpha2';
           }
 
           const plugin = {
