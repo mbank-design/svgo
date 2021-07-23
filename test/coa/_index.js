@@ -129,7 +129,6 @@ describe('coa', function () {
       path.resolve(__dirname, 'test.svg')
     ).length;
     await runProgram(['--input', svgPath, '--output', 'temp.svg', '--quiet']);
-    await new Promise((resolve) => setTimeout(resolve, 10));
     const optimizedFileLength = fs.readFileSync('temp.svg').length;
     expect(optimizedFileLength).lte(initialFileLength);
     await del('temp.svg');
@@ -144,7 +143,6 @@ describe('coa', function () {
       tempFolder,
       '--quiet',
     ]);
-    await new Promise((resolve) => setTimeout(resolve, 10));
     const optimizedWeight = calcFolderSvgWeight(tempFolder);
     expect(optimizedWeight).gt(0);
     expect(optimizedWeight).lte(initWeight);
@@ -170,7 +168,7 @@ describe('coa', function () {
     } finally {
       const optimizedFileLength = fs.readFileSync('temp.svg').length;
       expect(optimizedFileLength).lte(initialFile.length);
-      // await del('temp.svg');
+      await del('temp.svg');
     }
   });
 

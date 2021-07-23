@@ -21,10 +21,9 @@ exports.description = 'checks if the file is snake_case named';
 
 exports.fn = function (root, validateResult) {
   if (root.filename) {
-    var result = true;
-    var filename = root.filename;
-    filename = filename.substring(0, filename.length - 4);
-
+    let result = true;
+    // remove extension from filename
+    const filename = root.filename.split('.').slice(0, -1).join('.');
     // check for using diacritic characters in file name
     if (filename.search(/[^a-zA-Z0-9_]/) !== -1) {
       result = false;

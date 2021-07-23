@@ -15,7 +15,6 @@ Config example:
 plugins:
 - numberOfAllowedPaths:
 amount: 1
-strict: true 
 `;
 
 /**
@@ -32,16 +31,9 @@ strict: true
  */
 exports.fn = function (root, validateResult, params) {
   if (params.amount != null) {
-    let strict = params.strict || false;
-    let result = false;
+    const allElements = utils.findAllElementByName(root, 'path');
 
-    let allElements = utils.findAllElementByName(root, 'path');
-
-    if (allElements.length == params.amount) {
-      result = true;
-    } else if (strict && allElements.length <= params.amount) {
-      result = true;
-    }
+    const result = allElements.length === params.amount;
 
     validateResult.numberOfAllowedPaths = result;
   } else {

@@ -35,34 +35,24 @@ exports.fn = function (root, validateResult, params) {
     root.children[0].attributes.viewBox &&
     root.children[0].attributes.viewBox != null
   ) {
-    var result = false;
-    let viewBox = root.children[0].attributes.viewBox.split(' ');
-    viewBox = nonZero(viewBox);
-    if (compareArrayCells(viewBox, params.size)) {
-      result = true;
-    } else {
-      result = false;
-    }
-    validateResult.isArtboardCorrect = result;
+    let viewBox = root.children[0].attributes.viewBox
+      .split(' ')
+      .map(function (value) {
+        if (value !== 0) {
+          return parseInt(value, 10);
+        }
+      })
+      .filter(function (value) {
+        return value !== 0;
+      });
+
+    validateResult.isArtboardCorrect = compareArrayCells(viewBox, params.size);
   } else if (params === {} || !params) {
     console.error(ENOCLS);
   }
 
   return validateResult;
 };
-
-// remove all 0 form array and return it
-function nonZero(array) {
-  let result = [];
-
-  array.forEach(function (item) {
-    if (item !== '0') {
-      result.push(parseInt(item, 10));
-    }
-  });
-
-  return result;
-}
 
 //compare if equivalent cells in two arrays are equal
 function compareArrayCells(array1, array2) {
