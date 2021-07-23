@@ -32,6 +32,9 @@ exports.fn = function (root, validateResult) {
     const result = prefixes.some((prefix) => filename.indexOf(prefix) === 0);
 
     validateResult.isPrefixPresent = result;
+  } else {
+    validateResult.isPrefixPresent = false;
+    console.log('no filename provided!');
   }
 
   return validateResult;
