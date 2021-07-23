@@ -23,16 +23,12 @@ const utils = require('./validationUtilities.js');
 
 exports.fn = function (root, validateResult) {
   if (root.filename) {
-    var result = false;
-
-    // get extension form file name (if any)
+    // get extension form filename (if any)
     const ext = root.filename.split('.').pop();
 
-    var svgTag = utils.findElementByName(root, 'svg');
+    const svgTag = utils.findElementByName(root, 'svg');
 
-    if (svgTag.name === 'svg' && ext === 'svg') {
-      result = true;
-    }
+    const result = svgTag.name === 'svg' && ext === 'svg';
 
     validateResult.isSVG = result;
   }

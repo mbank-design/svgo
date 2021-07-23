@@ -20,26 +20,11 @@ const utils = require('./validationUtilities.js');
  * @author Tymon Żarski
  */
 exports.fn = function (root, validateResult) {
-  let result = false;
+  const allElements = utils.findAllElementByAttribute(root, 'fill');
 
-  let allElements = utils.findAllElementByAttribute(root, 'fill');
-
-  result = checkIfAllFillsAreNone(allElements);
-
-  validateResult.areFillsNone = result;
+  validateResult.areFillsNone = allElements.every(
+    (element) => element.attributes.fill === 'none'
+  );
 
   return validateResult;
 };
-
-// check if all fill in found elements of object have a value 'none' if yes, return true
-function checkIfAllFillsAreNone(elements) {
-  let result = true;
-
-  elements.forEach(function (element) {
-    if (element.attributes.fill !== 'none') {
-      result = false;
-    }
-  });
-
-  return result;
-}

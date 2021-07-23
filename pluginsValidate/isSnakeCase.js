@@ -21,10 +21,10 @@ exports.description = 'checks if the file is snake_case named';
 
 exports.fn = function (root, validateResult) {
   if (root.filename) {
-    var filename = root.filename;
-    filename = filename.substring(0, filename.length - 4);
-    var regex = /^[a-z][a-z0-9_]+$/;
-    var result = regex.test(filename);
+    // remove extension from filename
+    const filename = root.filename.split('.').slice(0, -1).join('.');
+    const regex = /^[a-z][a-z0-9_]+$/;
+    const result = regex.test(filename);
 
     validateResult.isSnakeCase = result;
   }

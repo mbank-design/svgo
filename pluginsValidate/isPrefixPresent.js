@@ -21,22 +21,15 @@ exports.description = 'checks if the filename has prefix';
 
 exports.fn = function (root, validateResult) {
   if (root.filename) {
-    var result = false;
-    var filename = root.filename;
-
-    var prefixes = [
+    const filename = root.filename;
+    const prefixes = [
       'retail_',
       'corporate_',
       'sme_',
       'privatebanking_',
       'mobile_',
     ];
-
-    for (var i = 0; i < prefixes.length; i++) {
-      if (filename.indexOf(prefixes[i]) === 0) {
-        result = true;
-      }
-    }
+    const result = prefixes.some((prefix) => filename.indexOf(prefix) === 0);
 
     validateResult.isPrefixPresent = result;
   }
