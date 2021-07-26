@@ -17,13 +17,17 @@ var asset_type = {
         },
       },
       {
-        name: 'numberOfAllowedPaths',
+        name: 'elementsLimitation',
         params: {
           amount: 1,
+          fillOrStroke: 'stroke',
         },
       },
       {
-        name: 'areFillsNone',
+        name: 'hasNoAttribute',
+        params: {
+          attribute: 'fill',
+        },
       },
       {
         name: 'isSnakeCase',
@@ -46,15 +50,16 @@ var asset_type = {
         },
       },
       {
-        name: 'numberOfAllowedPaths',
-        params: {
-          amount: 0,
-        },
-      },
-      {
         name: 'elementsLimitation',
         params: {
           amount: 1,
+          fillOrStroke: 'fill',
+        },
+      },
+      {
+        name: 'hasNoAttribute',
+        params: {
+          attribute: 'stroke',
         },
       },
       {
@@ -76,17 +81,17 @@ var asset_type = {
           size: [null, 48],
         },
       },
-
       {
         name: 'elementsLimitation',
         params: {
-          amount: 1,
+          unlimited: true,
+          fillOrStroke: 'fill',
         },
       },
       {
-        name: 'numberOfAllowedPaths',
+        name: 'hasNoAttribute',
         params: {
-          amount: 0,
+          attribute: 'stroke',
         },
       },
       {
@@ -143,12 +148,16 @@ var asset_type = {
         },
       },
       {
-        name: 'hasOnlyFills',
+        name: 'elementsLimitation',
+        params: {
+          unlimited: true,
+          fillOrStroke: 'fill',
+        },
       },
       {
-        name: 'numberOfAllowedPaths',
+        name: 'hasNoAttribute',
         params: {
-          amount: 0,
+          attribute: 'stroke',
         },
       },
       {
@@ -171,13 +180,30 @@ var asset_type = {
         },
       },
       {
-        name: 'fillsOnly',
+        name: 'elementsLimitation',
+        params: {
+          unlimited: true,
+          fillOrStroke: 'fill',
+        },
       },
       {
-        name: 'numberOfAllowedPaths',
+        name: 'hasNoAttribute',
         params: {
-          amount: 0,
+          attribute: 'stroke',
         },
+      },
+      {
+        name: 'isSnakeCase',
+      },
+      {
+        name: 'hasNoDiacriticCharacters',
+      },
+    ],
+  },
+  ANIMATION: {
+    plugins: [
+      {
+        name: 'isJSON',
       },
       {
         name: 'isSnakeCase',
