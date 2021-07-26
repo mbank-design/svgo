@@ -20,7 +20,7 @@ exports.description = 'checks if viewBox has correct size';
  * @author Tymon Żarski
  */
 
-var ENOCLS = `Error in plugin "isArtboardCorrect": absent parameters.
+const ENOCLS = `Error in plugin "isArtboardCorrect": absent parameters.
   It should have a size of Artboard in "size".
   Config example:
 
