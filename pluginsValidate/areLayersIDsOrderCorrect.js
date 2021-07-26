@@ -8,7 +8,7 @@ exports.description = 'checks if the layers are correctly named and ordered';
 
 const utils = require('./validationUtilities.js');
 
-var ENOCLS = `Error in plugin "areLayersIDsOrderCorrect": absent parameters.
+const ENOCLS = `Error in plugin "areLayersIDsOrderCorrect": absent parameters.
 It should have a ordered list of layers in "layersNameOrder" attribute.
 Config example:
 

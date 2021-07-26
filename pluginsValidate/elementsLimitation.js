@@ -9,13 +9,16 @@ exports.description =
 
 const utils = require('./validationUtilities.js');
 
-var ENOCLS = `Error in plugin "elementsLimitation": absent parameters.
+const ENOCLS = `Error in plugin "elementsLimitation": absent parameters.
 It should have a number of allowed svg elements in "amount" attribute.
 Config example:
 
 plugins:
--amount: 1
-`;
+- elementsLimitation:
+  amount: <number>
+  unlimited: <boolean>
+  fillOrStroke: 'fill'/'stroke'
+  `;
 
 /**
  * Checks if amount of allowed svg elements is within the limit
@@ -30,17 +33,32 @@ plugins:
  * @author Tymon Żarski
  */
 exports.fn = function (root, validateResult, params) {
-  if (params.amount != null) {
+  if (params.amount !== undefined || params.unlimited !== undefined) {
     const maxElements = params.amount;
-
+    const attribute = params.fillOrStroke;
     const allShapeElements = utils.findAllShapeElements(root);
 
-    const result = maxElements >= allShapeElements.length;
+    let result;
+
+    if (params.unlimited) {
+      result = checkForAttributes(allShapeElements, attribute);
+    } else {
+      result =
+        maxElements === allShapeElements.length &&
+        checkForAttributes(allShapeElements, attribute);
+    }
+
     validateResult.elementsLimitation = result;
   } else {
-    console.log(ENOCLS);
+    console.warn(ENOCLS);
     validateResult.elementsLimitation = false;
   }
 
   return validateResult;
 };
+
+function checkForAttributes(allShapeElements, attribute) {
+  return allShapeElements.every((shapeElement) => {
+    return attribute in shapeElement.attributes ? true : false;
+  });
+}

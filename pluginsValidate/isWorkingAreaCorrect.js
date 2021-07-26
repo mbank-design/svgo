@@ -23,7 +23,7 @@ const utils = require('./validationUtilities');
  * @author Tymon Żarski
  */
 
-var ENOCLS = `Error in plugin "isWorkingAreaCorrect": absent parameters.
+const ENOCLS = `Error in plugin "isWorkingAreaCorrect": absent parameters.
   It should have a size of working area in "size".
   Config example:
 

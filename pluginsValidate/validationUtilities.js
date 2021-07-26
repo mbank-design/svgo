@@ -64,6 +64,7 @@ function findAllShapeElements(svg) {
     'polygon',
     'polyline',
     'rect',
+    'path',
   ];
   walkTree(svg, function (node) {
     if (node.type === 'element' && shapeElements.includes(node.name)) {

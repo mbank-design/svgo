@@ -6,7 +6,7 @@ exports.active = false;
 
 exports.description = 'checks if the file is snake_case named';
 
-var countries = require('i18n-iso-countries');
+const countries = require('i18n-iso-countries');
 
 /**
  * Checks if the file is snake_case named
