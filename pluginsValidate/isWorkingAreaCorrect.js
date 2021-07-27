@@ -37,7 +37,7 @@ exports.fn = function (root, validateResult, params) {
     (params || params === {}) &&
     utils.findElementByName(root, 'path') &&
     root.children[0].attributes.viewBox &&
-    root.children[0].attributes.viewBox != null
+    root.children[0].attributes.viewBox !== undefined
   ) {
     const pathElement = utils.findElementByName(root, 'path');
     const [paramPathWidth, paramPathHeight] = params.size;
@@ -75,9 +75,15 @@ exports.fn = function (root, validateResult, params) {
       artboardY1 <= workingAreaY1;
 
     validateResult.isWorkingAreaCorrect = result;
-  } else if (params === {} || !params) {
-    console.error(ENOCLS);
+  } else if (
+    params === {} ||
+    !params ||
+    root.children[0].attributes.viewBox === undefined
+  ) {
     validateResult.isWorkingAreaCorrect = false;
+    if (params.size === undefined) {
+      console.error(ENOCLS);
+    }
   }
 
   return validateResult;
