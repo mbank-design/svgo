@@ -36,7 +36,7 @@ plugins:
  */
 exports.fn = function (root, validateResult, params) {
   let result = false;
-  if (params.layersNameOrder != null) {
+  if (params.layersNameOrder !== undefined) {
     const allElements = utils.findAllElementByAttribute(root, 'id');
     const layersNameOrder = params.layersNameOrder.reverse();
 
@@ -52,7 +52,7 @@ exports.fn = function (root, validateResult, params) {
     });
 
     result = idsOrderCorrect(allLayerElements, layersNameOrder);
-  } else if (params === {} || !params) {
+  } else {
     console.error(ENOCLS);
   }
 

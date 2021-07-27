@@ -33,7 +33,7 @@ exports.fn = function (root, validateResult, params) {
   if (
     (params || params === {}) &&
     root.children[0].attributes.viewBox &&
-    root.children[0].attributes.viewBox != null
+    root.children[0].attributes.viewBox !== undefined
   ) {
     const [paramViewBoxWidth, paramViewBoxHeight] = params.size;
 
@@ -68,9 +68,15 @@ exports.fn = function (root, validateResult, params) {
     }
 
     validateResult.isArtboardCorrect = result;
-  } else if (params === {} || !params) {
+  } else if (
+    params === {} ||
+    !params ||
+    root.children[0].attributes.viewBox === undefined
+  ) {
     validateResult.isArtboardCorrect = false;
-    console.error(ENOCLS);
+    if (params.size === undefined) {
+      console.error(ENOCLS);
+    }
   }
 
   return validateResult;
