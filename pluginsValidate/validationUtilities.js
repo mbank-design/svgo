@@ -75,6 +75,32 @@ function findAllShapeElements(svg) {
 }
 exports.findAllShapeElements = findAllShapeElements;
 
+function findFillElementsByColors(svg, colors) {
+  var result = [];
+
+  const shapeElements = [
+    'circle',
+    'ellipse',
+    'line',
+    'polygon',
+    'polyline',
+    'rect',
+    'path',
+  ];
+
+  walkTree(svg, function (node) {
+    if (
+      node.type === 'element' &&
+      shapeElements.includes(node.name) &&
+      colors.includes(node.attributes.fill)
+    ) {
+      result.push(node);
+    }
+  });
+  return result;
+}
+exports.findFillElementsByColors = findFillElementsByColors;
+
 // count all children in object
 function countElements(svg) {
   var count = 0;
