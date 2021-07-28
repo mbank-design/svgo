@@ -1,4 +1,4 @@
-var asset_type = {
+var ASSET_TYPE = {
   ICON_REGULAR: {
     plugins: [
       {
@@ -50,10 +50,16 @@ var asset_type = {
         },
       },
       {
-        name: 'elementsLimitation',
+        name: 'hasCorrectStripeColors',
         params: {
-          amount: 1,
-          fillOrStroke: 'fill',
+          stripeColors: [
+            '#E90A0A',
+            '#26221E',
+            '#FF8600',
+            '#AE0000',
+            '#0065B1',
+            '#008520',
+          ],
         },
       },
       {
@@ -215,4 +221,4 @@ var asset_type = {
   },
 };
 
-exports.validationAssetType = asset_type;
+exports.VALIDATION_ASSET_TYPE = ASSET_TYPE;

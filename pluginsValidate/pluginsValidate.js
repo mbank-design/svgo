@@ -9,3 +9,4 @@ exports.areLayersIDsOrderCorrect = require('./areLayersIDsOrderCorrect.js');
 exports.elementsLimitation = require('./elementsLimitation.js');
 exports.isISO3166_1Alpha2 = require('./isISO3166_1Alpha2.js');
 exports.hasNoAttribute = require('./hasNoAttribute.js');
+exports.hasCorrectStripeColors = require('./hasCorrectStripeColors.js');
