@@ -46,6 +46,7 @@
     "bin",
     "lib",
     "plugins",
+    "pluginsValidate",
     "dist"
   ],
   "scripts": {
