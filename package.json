@@ -48,6 +48,8 @@
     "plugins",
     "dist",
     "!**/*.test.js"
+    "pluginsValidate",
+    "dist"
   ],
   "scripts": {
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --maxWorkers=3 --coverage",
