@@ -47,7 +47,9 @@
     "lib",
     "plugins",
     "dist",
-    "!**/**.test.js"
+    "!**/**.test.js",
+    "pluginsValidate",
+    "dist"
   ],
   "scripts": {
     "test": "jest --coverage",
