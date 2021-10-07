@@ -48,8 +48,7 @@
     "plugins",
     "dist",
     "!**/*.test.js",
-    "pluginsValidate",
-    "dist"
+    "pluginsValidate"
   ],
   "engines": {
     "node": ">=10.13.0"
@@ -64,8 +63,8 @@
     "prepublishOnly": "rm -rf dist && rollup -c",
     "release": "standard-version",
     "build": "yarn prepublishOnly",
-    "release-and-publish": "yarn release && yarn build && yarn publish --non-interactive --tag latest",
-    "publish:external": "yarn release-and-publish --use-yarnrc mbank-design.yarnrc && git push --follow-tags origin master"
+    "release-and-publish": "yarn release && yarn build && npm publish",
+    "publish:external": "git tag --delete $(git tag --list) && git fetch; yarn release-and-publish && git push --follow-tags origin master"
   },
   "prettier": {
     "singleQuote": true
@@ -111,9 +110,9 @@
     "css-select": "^4.1.3",
     "css-tree": "^1.1.3",
     "csso": "^4.2.0",
+    "i18n-iso-countries": "^6.8.0",
     "nanocolors": "^0.2.1",
     "stable": "^0.1.8",
-    "i18n-iso-countries": "^6.8.0",
     "svg-path-bbox": "^1.0.1"
   },
   "devDependencies": {
@@ -134,8 +133,8 @@
     "prettier": "^2.4.0",
     "rollup": "^2.56.3",
     "rollup-plugin-terser": "^7.0.2",
-    "strip-ansi": "^6.0.0",
     "standard-version": "^9.3.1",
+    "strip-ansi": "^6.0.0",
     "tar-stream": "^2.2.0",
     "typescript": "^4.4.3"
   }
