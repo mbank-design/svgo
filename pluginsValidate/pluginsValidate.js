@@ -2,6 +2,7 @@ exports.isSnakeCase = require('./isSnakeCase.js');
 exports.isArtboardCorrect = require('./isArtboardCorrect.js');
 exports.isWorkingAreaCorrect = require('./isWorkingAreaCorrect.js');
 exports.isCorrectSvg = require('./isCorrectSvg.js');
+exports.isText = require('./isText.js');
 exports.isJSON = require('./isJSON.js');
 exports.hasNoDiacriticCharacters = require('./hasNoDiacriticCharacters.js');
 exports.isSuffixPresent = require('./isSuffixPresent.js');
