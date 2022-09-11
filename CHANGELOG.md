@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.15.0](https://github.com/mbank-design/svgo/compare/v2.14.0...v2.15.0) (2022-09-11)
+
+
+### Features
+
+* Change 'main' package.json field to browser bundle ([65644e1](https://github.com/mbank-design/svgo/commit/65644e15370bce88b5dab74073c20ac550a3f6d5))
+
 ## [2.14.0](https://github.com/mbank-design/svgo/compare/v2.13.0...v2.14.0) (2022-07-13)
 
 
