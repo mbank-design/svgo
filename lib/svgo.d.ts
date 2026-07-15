@@ -78,6 +78,7 @@ type ValidationResult = {
   elementsLimitation?: boolean;
   isISO3166_1Alpha2?: boolean;
   hasNoAttribute?: boolean;
+  hasCorrectStrokeColor?: boolean;
   hasCorrectStripeColors?: boolean;
   isPdf?: boolean;
   isSVG?: boolean;
