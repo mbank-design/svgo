@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [3.4.0](https://github.com/mbank-design/svgo/compare/v3.3.1...v3.4.0) (2026-07-16)
+
+
+### Features
+
+* Add hasCorrectMaskColor rule for color icons ([8ac4873](https://github.com/mbank-design/svgo/commit/8ac48734ccfc9bd07f964e2f93db1c26b0a66d1d))
+* Add hasCorrectStrokeColor rule for regular icons ([b849cb9](https://github.com/mbank-design/svgo/commit/b849cb9de93d8675b351c1a8a6d0d49b20dc1a24))
+
 ### [3.3.1](https://github.com/mbank-design/svgo/compare/v3.3.0...v3.3.1) (2025-05-16)
 
 
