@@ -1,0 +1,9 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><mask id="mask0"><path d="M5.75 14.25V4H4.25V15.75H16.9278L12.5175 19.4237L13.4775 20.5763L20.1718 15L13.4775 9.42374L12.5175 10.5763L16.9278 14.25H5.75Z" fill="white"/></mask><mask id="mask1"><path d="M5.75 14.25V4H4.25V15.75H16.9278L12.5175 19.4237L13.4775 20.5763L20.1718 15L13.4775 9.42374L12.5175 10.5763L16.9278 14.25H5.75Z" fill="black"/></mask><g mask="url(#mask0)"><path d="M0 0H6.272V24H0V0Z" fill="#E90A0A"/><path d="M6.272 0H6.976V24H6.272V0Z" fill="#26221E"/><path d="M6.976 0H13.44V24H6.976V0Z" fill="#FF8600"/><path d="M13.44 0H17.664V24H13.44V0Z" fill="#AE0000"/><path d="M17.664 0H18.112V24H17.664V0Z" fill="#0065B1"/><path d="M18.112 0H24V24H18.112V0Z" fill="#008520"/></g></svg>
+
+@@@
+
+false
+
+@@@
+
+{"fillColors": ["white", "#fff", "#ffffff"]}

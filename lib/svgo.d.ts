@@ -80,6 +80,7 @@ type ValidationResult = {
   hasNoAttribute?: boolean;
   hasCorrectStrokeColor?: boolean;
   hasCorrectStripeColors?: boolean;
+  hasCorrectMaskColor?: boolean;
   isPdf?: boolean;
   isSVG?: boolean;
   hasUniqueName?: boolean;
