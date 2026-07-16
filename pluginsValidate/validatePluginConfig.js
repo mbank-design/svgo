@@ -79,6 +79,12 @@ var ASSET_TYPE = {
         },
       },
       {
+        name: 'hasCorrectMaskColor',
+        params: {
+          fillColors: ['white', '#fff', '#ffffff'],
+        },
+      },
+      {
         name: 'hasNoAttribute',
         params: {
           attribute: 'stroke',
