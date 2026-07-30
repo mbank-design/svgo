@@ -18,6 +18,14 @@ const ENOCLS = `Error in plugin "hasCorrectStrokeColor": absent parameters.
   plugins:
   - hasCorrectStrokeColor:
       strokeColors: ['#6E6E6E', '#6e6e6e']
+
+  When validating by asset type, override the defaults per rule instead:
+
+  validate(svg, filename, 'ICON_REGULAR', {
+    validateParams: {
+      hasCorrectStrokeColor: { strokeColors: ['#6E6E6E', '#6e6e6e'] },
+    },
+  });
   `;
 
 // matches the stroke color property in inline CSS, but not stroke-width, stroke-linecap etc.
@@ -29,9 +37,9 @@ const STROKE_PROPERTY_PATTERN = /(?:^|;)\s*stroke\s*:/i;
  * The icon coloring tooling (color variant generation in the assets repository and the
  * React design system library) replaces the literal base color value, so every stroke
  * has to be a plain attribute set to exactly one of the allowed notations. The allowed
- * values must stay in sync with ASSET_OUTLINE_DEFAULT_COLOR in
- * scripts/generate_colored_regular_assets.sh (mbank-design/assets repository), which
- * textually replaces exactly these literals.
+ * values are supplied by the caller and must stay in sync with whichever literals that
+ * tooling replaces - for the ICON_REGULAR defaults that is ASSET_OUTLINE_DEFAULT_COLOR
+ * in scripts/generate_colored_regular_assets.sh (mbank-design/assets repository).
  *
  * Any <style> element is rejected (not only stroke rules): the attribute-based format
  * conversions (e.g. Android VectorDrawable) drop CSS entirely, and CSS-defined

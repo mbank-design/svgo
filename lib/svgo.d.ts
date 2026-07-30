@@ -89,18 +89,60 @@ type ValidationResult = {
   isBlackStrokeCorrect?: boolean;
 };
 
+type ValidatePluginConfig =
+  | string
+  | {
+      name: string;
+      params?: Record<string, unknown>;
+    };
+
+/**
+ * Params of a single validation rule, overriding the defaults declared for the
+ * asset type in `pluginsValidate/validatePluginConfig.js`.
+ */
+type ValidateParams = {
+  /** Allowed base stroke colors, e.g. `['#6E6E6E', '#6e6e6e']`. */
+  hasCorrectStrokeColor?: { strokeColors: string[] };
+} & Record<string, Record<string, unknown> | undefined>;
+
+export type ValidateConfig = {
+  /** Can be used by plugins, for example prefixids */
+  path?: string;
+  /** Precision of floating point numbers. Will be passed to each plugin that supports this param. */
+  floatPrecision?: number;
+  /**
+   * Explicit list of validation rules to run.
+   * Replaces the rule list of the asset type entirely, so prefer `validateParams`
+   * when you only need to retune a single rule.
+   */
+  plugins?: ValidatePluginConfig[];
+  /**
+   * Params applied on top of the asset type defaults, keyed by rule name.
+   * Lets a single rule be configured without restating the whole rule list.
+   *
+   * validate(svg, 'icon.svg', 'ICON_REGULAR', {
+   *   validateParams: {
+   *     hasCorrectStrokeColor: { strokeColors: ['#123456'] },
+   *   },
+   * });
+   */
+  validateParams?: ValidateParams;
+};
+
 /**
  * Validates svg file
  *
  * @param {ArrayBuffer | string} input array buffer or base64 svg.
  * @param {string} filename Name of the asset file.
  * @param {AssetTypes} type Type of the asset.
+ * @param {ValidateConfig} [config] Overrides for the asset type defaults.
  * @returns {ValidationResult} The resulting state of validated asset.
  */
 export declare function validate(
   input: ArrayBuffer | string,
   filename: string,
-  type: AssetTypes
+  type: AssetTypes,
+  config?: ValidateConfig
 ): ValidationResult;
 
 /**

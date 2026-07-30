@@ -44,6 +44,40 @@ Example:
 yarn validate-rule --rule=ensureSingleRootG --dir=/path/to/illustrations --verbose --jobs=8
 ```
 
+### Configuring Validation Rules
+
+Each asset type declares its rules and their default params in `pluginsValidate/validatePluginConfig.js`. To retune a single rule without restating the whole list, pass `validateParams` to `validate()`, keyed by rule name:
+
+```js
+const { validate } = require('@mbank-design/svgo');
+
+const result = validate(svg, 'home.svg', 'ICON_REGULAR', {
+  validateParams: {
+    hasCorrectStrokeColor: { strokeColors: ['#123456', '#123abc'] },
+  },
+});
+```
+
+Params are merged over the asset type defaults, so rules you do not mention keep their defaults, and rules you do mention only change the param keys you supply. Omitting `validateParams` entirely leaves every rule on its default — for `ICON_REGULAR` that means strokes are validated against `['#6E6E6E', '#6e6e6e']`.
+
+The merge is one level deep: a param key you supply **replaces** the default value rather than being merged into it. This matters for rules whose params are themselves objects — supplying `hasIllustrationCorrectColorLayers.stripeColors` with only `mass` drops the other brands, so pass the whole map:
+
+```js
+validateParams: {
+  hasIllustrationCorrectColorLayers: {
+    // every brand, not just the one being changed
+    stripeColors: { mass: [...], sme: [...], corporate: [...] },
+  },
+},
+```
+
+Notes:
+
+- The override applies to a single `validate()` call. Neither it nor the asset type config is mutated, so one config object can be reused across assets of different types.
+- Naming a rule that the asset type does not run logs a warning and is otherwise ignored.
+- Passing `plugins` instead replaces the asset type rule list entirely; `validateParams` still applies on top of it.
+- `hasCorrectStrokeColor` matches stroke attributes literally, so list every notation you accept (e.g. both the upper and lower case form of a hex color).
+
 ### Plugin Validation Structure
 
 The validation tests have a specific structure:

@@ -32,6 +32,8 @@ var ASSET_TYPE = {
       {
         name: 'hasCorrectStrokeColor',
         params: {
+          // default, overridable per call with
+          // config.validateParams.hasCorrectStrokeColor.strokeColors
           // must stay in sync with ASSET_OUTLINE_DEFAULT_COLOR in
           // scripts/generate_colored_regular_assets.sh (mbank-design/assets)
           strokeColors: ['#6E6E6E', '#6e6e6e'],
